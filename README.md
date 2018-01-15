@@ -3,7 +3,9 @@ Chess (AngularJs, Angular Material, NodeJs, Express, MongoDb)
 
 
 Summary:
-    It is an application developed with NodeJs, AngularJs and MongoDb. It allows to register, authenticate, invite a user to play, accept or decline invitation and play chess.
+
+    It is an application developed with NodeJs, AngularJs and MongoDb. 
+    It allows to register, authenticate, invite a user to play, accept or decline invitation and play chess.
     
 
 To run the server, execute the following steps:
