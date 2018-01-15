@@ -1,0 +1,97 @@
+{
+  "_args": [
+    [
+      "angular-aria@~1.5",
+      "/home/corona/updates"
+    ]
+  ],
+  "_from": "angular-aria@>=1.5.0 <1.6.0",
+  "_id": "angular-aria@1.5.9",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/angular-aria",
+  "_nodeVersion": "4.4.7",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/angular-aria-1.5.9.tgz_1480018650213_0.7419410247821361"
+  },
+  "_npmUser": {
+    "email": "angular-core+npm@google.com",
+    "name": "angularcore"
+  },
+  "_npmVersion": "2.15.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "angular-aria",
+    "raw": "angular-aria@~1.5",
+    "rawSpec": "~1.5",
+    "scope": null,
+    "spec": ">=1.5.0 <1.6.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "http://nexus.prod.uci.cu/repository/npm-all/angular-aria/-/angular-aria-1.5.9.tgz",
+  "_shasum": "cef4936fbcf8dbf7ecdabc5b475da59d98b3694b",
+  "_shrinkwrap": null,
+  "_spec": "angular-aria@~1.5",
+  "_where": "/home/corona/updates",
+  "author": {
+    "email": "angular-core+npm@google.com",
+    "name": "Angular Core Team"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "dependencies": {},
+  "description": "AngularJS module for making accessibility easy",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "cef4936fbcf8dbf7ecdabc5b475da59d98b3694b",
+    "tarball": "http://nexus.prod.uci.cu/repository/npm-all/angular-aria/-/angular-aria-1.5.9.tgz"
+  },
+  "gitHead": "ae7ad8b3766264d91a5de60d7dca73365388a556",
+  "homepage": "http://angularjs.org",
+  "jspm": {
+    "shim": {
+      "angular-aria": {
+        "deps": [
+          "angular"
+        ]
+      }
+    }
+  },
+  "keywords": [
+    "a11y",
+    "accessibility",
+    "angular",
+    "browser",
+    "client-side",
+    "framework"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "name": "angular-aria",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.5.9"
+}

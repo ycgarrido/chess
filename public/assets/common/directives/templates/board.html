@@ -1,0 +1,35 @@
+<md-card>
+    <md-content class="layout-padding chess-board" ng-class="getBoardClass()">
+        <div layout="row" flex style="height:25%;" layout-align="center center">
+            <div class="letras" ng-class="getBoardClass()">H</div>
+            <div class="letras" ng-class="getBoardClass()">G</div>
+            <div class="letras" ng-class="getBoardClass()">F</div>
+            <div class="letras" ng-class="getBoardClass()">E</div>
+            <div class="letras" ng-class="getBoardClass()">D</div>
+            <div class="letras" ng-class="getBoardClass()">C</div>
+            <div class="letras" ng-class="getBoardClass()">B</div>
+            <div class="letras" ng-class="getBoardClass()">A</div>
+        </div>
+        <div layout="row" style="height:25%;" ng-repeat="(letra,row) in cBoard"
+             layout-align="center center">
+            <div class="number" ng-class="getBoardClass()">{{letra+1}}</div>
+            <div class="cell" ng-class="getCellClass(letra, number)"
+                 ng-class="isSelected(letra, number)?'selected':''"
+                 ng-repeat="(number,cell) in row" ng-click="selectCell(letra, number, $event)">
+                <img ng-if="cell && cell.type" ng-class="getBoardClass()"
+                     src="assets/common/images/pieces/classic/{{(cell.color ? 'white':'black')}}/{{cell.type}}.png">
+            </div>
+            <div class="number" ng-class="getBoardClass()">{{letra+1}}</div>
+        </div>
+        <div layout="row" flex style="height:25%;" layout-align="center center">
+            <div class="letras" ng-class="getBoardClass()">H</div>
+            <div class="letras" ng-class="getBoardClass()">G</div>
+            <div class="letras" ng-class="getBoardClass()">F</div>
+            <div class="letras" ng-class="getBoardClass()">E</div>
+            <div class="letras" ng-class="getBoardClass()">D</div>
+            <div class="letras" ng-class="getBoardClass()">C</div>
+            <div class="letras" ng-class="getBoardClass()">B</div>
+            <div class="letras" ng-class="getBoardClass()">A</div>
+        </div>
+    </md-content>
+</md-card>

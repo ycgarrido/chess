@@ -1,0 +1,280 @@
+<div>
+    <div layout="row" layout-xs="column" layout-sm="column">
+        <div layout="column" flex="50" flex-xs="100" flex-sm="100" id="column-users">
+            <md-card>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <span>Usuarios conectados</span>
+                    </div>
+                </md-toolbar>
+                <md-content layout-padding>
+                    <md-list flex ng-if="usersConnected.length">
+                        <md-list-item
+                                ng-repeat="user in usersConnected"
+                                class="md-2-line page {{user.page}}">
+                            <md-button class="md-secondary md-icon-button action-invite"
+                                       ng-click="vm.showUserInfo(user)"
+                                       aria-label="call">
+                                <md-icon> info_outline</md-icon>
+                                <md-tooltip>Información</md-tooltip>
+                            </md-button>
+                            <div class="md-list-item-text" layout="column">
+                                <h3> {{ user.username }} </h3>
+                            </div>
+                            <md-button class="md-secondary md-icon-button action-invite"
+                                       ng-click="vm.showUserInfo(user)"
+                                       aria-label="call">
+                                <md-icon> info_outline</md-icon>
+                                <md-tooltip>Información</md-tooltip>
+                            </md-button>
+                            <md-button class="md-secondary md-icon-button action-invite" ng-click="invite(user)"
+                                       aria-label="call">
+                                <md-icon> play_arrow</md-icon>
+                                <md-tooltip>Invitar</md-tooltip>
+                            </md-button>
+                        </md-list-item>
+                    </md-list>
+                    <span ng-if="!usersConnected.length">No existen usuarios conectados.</span>
+                </md-content>
+            </md-card>
+        </div>
+        <div layout="column" flex="25" flex-xs="100" flex-sm="100">
+            <md-card ng-if="vm.userSelected">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <span>Contra: {{vm.userSelected.user.username}}</span>
+                        <span flex></span>
+                        <md-button class="md-secondary md-icon-button" ng-click="vm.hideUserInfo()" aria-label="call">
+                            <md-icon> clear</md-icon>
+                            <md-tooltip>Cerrar</md-tooltip>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-content layout-padding>
+                    <md-list flex>
+                        <md-subheader class="md-no-sticky">Probabilidades</md-subheader>
+                        <md-list-item>
+                            <span style="font-size: 10px;" flex><b>Victoria</b>:</span><span flex></span><span
+                                style="font-size: 10px;">{{vm.userSelected.info.win.elo}} ({{vm.userSelected.info.win.probability}}%)</span>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-list-item>
+                            <span style="font-size: 10px;"><b>Empate</b>:</span><span flex></span><span
+                                style="font-size: 10px;">{{vm.userSelected.info.draw.elo}} ({{vm.userSelected.info.draw.probability}}%)</span>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-list-item>
+                            <span style="font-size: 10px;"><b>Derrota</b>:</span><span flex></span><span
+                                style="font-size: 10px;">{{vm.userSelected.info.lost.elo}} ({{vm.userSelected.info.lost.probability}}%)</span>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-card>
+            <md-card>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <span>Invitaciones</span>
+                    </div>
+                </md-toolbar>
+                <md-content layout-padding>
+                    <md-list flex ng-if="vm.invites.length">
+                        <md-list-item ng-repeat="(i,invite) in vm.invites" style="padding: 0px;">
+                            <div class="md-list-item-text" layout="column">
+                                <h3 style="font-size: 10px;">
+                                    <md-icon class="invite-color" ng-if="invite.options.color === 'b'">
+                                        radio_button_unchecked
+                                    </md-icon>
+                                    <md-icon class="invite-color" ng-if="invite.options.color === 'n'">
+                                        brightness_1
+                                    </md-icon>
+                                    <md-icon class="invite-color" ng-if="invite.options.color === 'a'">
+                                        radio_button_checked
+                                    </md-icon>
+                                    {{ invite.from.name }}
+                                </h3>
+                            </div>
+                            <md-button class="md-secondary md-icon-button action-invite"
+                                       ng-click="vm.acceptInvite(invite,i)" aria-label="call"
+                                       ng-if="vm.inPage(invite.from, 'index')">
+                                <md-icon style="color: darkgreen;"> check</md-icon>
+                                <md-tooltip>Aceptar</md-tooltip>
+                            </md-button>
+                            <md-button class="md-secondary md-icon-button action-invite" ng-click="vm.declineInvite(i)"
+                                       aria-label="call">
+                                <md-icon style="color: darkred;"> clear</md-icon>
+                                <md-tooltip>Cancelar</md-tooltip>
+                            </md-button>
+                        </md-list-item>
+                    </md-list>
+                    <span ng-if="!vm.invites.length">No existen invitaciones.</span>
+                </md-content>
+            </md-card>
+        </div>
+        <div layout="column" flex="25" flex-xs="100" flex-sm="100">
+            <md-card>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <span>Partidas pendientes</span>
+                    </div>
+                </md-toolbar>
+                <md-content layout-padding>
+                    <md-list flex ng-if="vm.postponed.length">
+                        <md-list-item ng-repeat="(i,post) in vm.postponed" style="padding: 0px;">
+                            <div class="md-list-item-text" layout="column">
+                                <h3 style="font-size: 10px;">
+                                    <md-icon class="invite-color" ng-if="post.black.user._id === user._id">
+                                        radio_button_unchecked
+                                    </md-icon>
+                                    <md-icon class="invite-color" ng-if="post.white.user._id === user._id">
+                                        brightness_1
+                                    </md-icon>
+                                    <span ng-if="post.black.user._id === user._id">{{ post.white.user.name }}</span>
+                                    <span ng-if="post.white.user._id === user._id">{{ post.black.user.name }}</span>
+                                </h3>
+                            </div>
+                            <md-button class="md-secondary md-icon-button action-invite"
+                                       ng-if="post.black.user._id === user._id ? existUser(post.white.user) && vm.inPage(post.white.user, 'index') : existUser(post.black.user)&& vm.inPage(post.black.user, 'index')"
+                                       ng-click="vm.goToGame(post._id)" aria-label="call">
+                                <md-icon style="color: darkgreen;"> play_arrow</md-icon>
+                                <md-tooltip>Aceptar</md-tooltip>
+                            </md-button>
+                            <md-button class="md-secondary md-icon-button action-invite"
+                                       ng-click="vm.declineGame(post._id)"
+                                       aria-label="call">
+                                <md-icon style="color: darkred;"> clear</md-icon>
+                                <md-tooltip>Abandonar</md-tooltip>
+                            </md-button>
+                        </md-list-item>
+                    </md-list>
+                    <span ng-if="!vm.postponed.length">No existen partidas aplazadas.</span>
+                </md-content>
+            </md-card>
+            <md-card>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <span>Configuración</span>
+                    </div>
+                </md-toolbar>
+                <md-content layout-padding>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Tiempo</label>
+                            <md-select ng-model="user.profile.time.value">
+                                <md-option ng-repeat="t in times" value="{{t.value}}" ng-click="vm.changeTime(t)">
+                                    {{t.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-radio-group ng-model="user.profile.color">
+                            <md-radio-button value="b" class="md-primary" ng-click="vm.changeColor('b')">Blancas
+                            </md-radio-button>
+                            <md-radio-button value="n" class="md-primary" ng-click="vm.changeColor('n')"> Negras
+                            </md-radio-button>
+                            <md-radio-button value="a" class="md-primary" ng-click="vm.changeColor('a')">Aleatorias
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Color del tablero</label>
+                            <md-select ng-model="user.profile.board">
+                                <md-option ng-repeat="b in boards" value="{{b.value}}"
+                                           ng-click="vm.changeBoard(b.value)">
+                                    {{b.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-card flex>
+                            <md-content class="layout-padding chess-board">
+                                <div layout="row" flex style="height:25%;" layout-align="center center">
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                </div>
+                                <div layout="row" flex style="height:25%;" layout-align="center center">
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                </div>
+                                <div layout="row" flex style="height:25%;" layout-align="center center">
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                </div>
+                                <div layout="row" flex style="height:25%;" layout-align="center center">
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                </div>
+                                <div layout="row" flex style="height:25%;" layout-align="center center">
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                </div>
+                                <div layout="row" flex style="height:25%;" layout-align="center center">
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                </div>
+                                <div layout="row" flex style="height:25%;" layout-align="center center">
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                </div>
+                                <div layout="row" flex style="height:25%;" layout-align="center center">
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                    <div class="mini cell black {{user.profile.board}}"></div>
+                                    <div class="mini cell white {{user.profile.board}}"></div>
+                                </div>
+                            </md-content>
+                        </md-card>
+                    </div>
+                </md-content>
+            </md-card>
+        </div>
+    </div>
+</div>

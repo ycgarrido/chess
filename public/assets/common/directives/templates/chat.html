@@ -1,0 +1,33 @@
+<div layout="row" layout-sm="column" layout-xs="column" layout-align="left top">
+    <div layout="column" flex>
+        <md-card >
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    Contactos
+                </div>
+            </md-toolbar>
+            <md-content class="layout-padding">
+                <md-list ng-cloak>
+                    <md-list-item ng-repeat="user in users" ng-click="openTalk(user)">
+                        <p> {{ user.name }} </p>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-card>
+    </div>
+    <div layout="column" flex>
+        <md-card >
+            <md-tabs md-dynamic-height md-border-bottom ng-if="openedTalks.length">
+                <md-tab label="{{talk.username}}" ng-repeat="talk in openedTalks">
+                    <md-content class="md-padding">
+                        <div style="height: 400px;"></div>
+                        <textarea style="width: 100%;resize: none;"></textarea>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+            <md-content class="layout-padding" ng-if="!openedTalks.length">
+                <p>No existe ninguna conversacion activa.</p>
+            </md-content>
+        </md-card>
+    </div>
+</div>

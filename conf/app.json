@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "current": "local",
+    "drivers": {
+      "ldap": {
+        "url": "ldap://10.12.0.9:389",
+        "cn":["admin"],
+        "dc":["xetid", "cu"],
+        "ou":"Personas"
+      },
+      "local":true
+    }
+  }
+}

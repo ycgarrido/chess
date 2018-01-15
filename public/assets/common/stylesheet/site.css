@@ -1,0 +1,52 @@
+.md-whiteframe-glow-z1 {box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);}
+.site-content-toolbar {background: #f6f6f6 !important;color: #666 !important;z-index: 3;}
+.site-content-toolbar md-icon{color:#666 !important;}
+.cell{width: 50px;height: 50px;background-size: 50px !important;}
+.mini.cell{width: 25px;height: 25px;}
+.letras{text-align: center;padding: 5px;width: 50px;height: 30px;}
+.number{width: 20px;text-align: center;}
+.white.cell.classic{background: url('/assets/common/images/boards/classic/white.png');}
+.white.cell.classic.possible{background: url('/assets/common/images/boards/classic/possible/white.png');}
+.black.cell.classic{background: url('/assets/common/images/boards/classic/black.png');}
+.black.cell.classic.possible{background: url('/assets/common/images/boards/classic/possible/black.png');}
+.white.cell.green{background: url('/assets/common/images/boards/green/white.png');}
+.white.cell.green.possible{background: url('/assets/common/images/boards/green/possible/white.png');}
+.black.cell.green{background: url('/assets/common/images/boards/green/black.png');}
+.black.cell.green.possible{background: url('/assets/common/images/boards/green/possible/black.png');}
+.white.cell.blue{background: url('/assets/common/images/boards/blue/white.png');}
+.white.cell.blue.possible{background: url('/assets/common/images/boards/blue/possible/white.png');}
+.black.cell.blue{background: url('/assets/common/images/boards/blue/black.png');}
+.black.cell.blue.possible{background: url('/assets/common/images/boards/blue/possible/black.png');}
+.chess-board div[layout="row"]{margin: 0;padding: 0;}
+.selected{border-width: 4px;border-style: solid;height: 50px;width: 50px;border-color: #2c80d2;}
+.opponent-selected{border-width: 4px;border-style: dashed;height: 50px;width: 50px;border-color: #009c33;}
+.cell img{height: 100%;width: 100%;}
+.rotate-180{transform: rotate(180deg);}
+button.action-invite{margin-left: 0 !important;margin-right: 0 !important;padding-top: 12px !important;}
+button.action-invite md-icon{font-size: 15px;}
+.invite-color{font-size: 20px;padding-top: 2px;}
+.clock{color: #d18b47;font-size: 40px;text-align: center;}
+.logo{height: 50px;}
+.animated{-webkit-animation-duration:1s;-moz-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both}
+.page.index{background-color: rgba(19, 125, 6, 0.32);}
+.page.game{background-color: rgba(255, 206, 158, 0.32);}
+.page.try{background-color: rgba(76,158,240,0.32);}
+.md-list-item-text h3,.md-list-item-text p{padding-left: 10px;}
+@media all and (max-width:500px){
+    .cell{width: 40px;height: 40px;background-size: 40px !important;}
+    .clock{font-size: 20px;}
+    span.user-logged{font-size: 12px;}
+    .logo{height: 40px;}
+    .number,.game-messages{font-size: 12px;}
+    .letras{font-size: 12px;width: 40px;}
+}
+@media all and (max-width:330px){
+    .cell{width: 30px;height: 30px;background-size: 30px !important;}
+    .clock{font-size: 20px;}
+    .chess-board div[layout="row"]{  height: 30px !important; }
+    span.user-logged{font-size: 10px;}
+    .logo{height: 30px;}
+    .number,.game-messages{font-size: 10px;}
+    .letras{font-size: 10px;width: 28px;}
+}
+

@@ -1,0 +1,114 @@
+<div>
+    <div layout-align="center top" layout="row" layout-xs="column" ng-cloak>
+        <div >
+            <md-card>
+                <div layout="column" layout-xs="row" layout-align="center center">
+                    <md-button class="md-fab md-mini" ng-class="user.profile.promove === 'queen'? 'md-warn':'md-raised'" ng-click="vm.setPromove('queen')" aria-label="Eat cake">
+                        <md-icon md-svg-src="/assets/common/svg/pieces/{{user.profile.piece}}/{{(vm.white.user._id === user._id)?'white': 'black'}}/queen.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini" ng-class="user.profile.promove === 'tower'? 'md-warn':'md-raised'" ng-click="vm.setPromove('tower')"  aria-label="Eat cake">
+                        <md-icon md-svg-src="/assets/common/svg/pieces/{{user.profile.piece}}/{{(vm.white.user._id === user._id)?'white': 'black'}}/tower.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini" ng-class="user.profile.promove === 'alfil'? 'md-warn':'md-raised'" ng-click="vm.setPromove('alfil')"  aria-label="Eat cake">
+                        <md-icon md-svg-src="/assets/common/svg/pieces/{{user.profile.piece}}/{{(vm.white.user._id === user._id)?'white': 'black'}}/alfil.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini" ng-class="user.profile.promove === 'horse'? 'md-warn':'md-raised'" ng-click="vm.setPromove('horse')"  aria-label="Eat cake">
+                        <md-icon md-svg-src="/assets/common/svg/pieces/{{user.profile.piece}}/{{(vm.white.user._id === user._id)?'white': 'black'}}/horse.svg"></md-icon>
+                    </md-button>
+                </div>
+            </md-card>
+        </div>
+        <div flex>
+            <md-card ng-if="vm.winner && vm.winner._id === vm.white.user._id">
+                <md-content class="layout-padding">
+                    <div>Ganan las blancas.</div>
+                </md-content>
+            </md-card>
+            <md-card ng-if="vm.winner && vm.winner._id === vm.black.user._id">
+                <md-content class="layout-padding">
+                    <div>Ganan las negras.</div>
+                </md-content>
+            </md-card>
+            <md-card ng-if="vm.finished && !vm.winner && !vm.lost">
+                <md-content class="layout-padding">
+                    <div>El juego ha terminado tablas.</div>
+                </md-content>
+            </md-card>
+            <md-card ng-if="vm.postpone">
+                <md-content class="layout-padding">
+                    <div>Partida aplazada por desconexión.</div>
+                </md-content>
+            </md-card>
+            <md-card ng-if="vm.outofgame">
+                <md-content class="layout-padding">
+                    <div>Tu oponente se ha desconectado. Esperando {{vm.outofgame}} segundos.</div>
+                </md-content>
+            </md-card>
+            <md-card>
+                <md-content>
+                    <div class="clock">{{vm.time.other.string}}</div>
+                </md-content>
+            </md-card>
+            <md-card>
+                <md-content class="layout-padding chess-board" ng-if="vm.board.length" ng-class="vm.getBoardClass()">
+                    <div layout="row" flex style="height:25%;" layout-align="center center">
+                        <div class="letras" ng-class="vm.getBoardClass()">H</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">G</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">F</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">E</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">D</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">C</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">B</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">A</div>
+                    </div>
+                    <div layout="row" style="height:25%;" ng-repeat="(letra,row) in vm.board"
+                         layout-align="center center">
+                        <div class="number" ng-class="vm.getBoardClass()">{{letra+1}}</div>
+                        <div class="cell" ng-class="vm.getCellClass(letra, number)"
+                             ng-class="vm.isSelected(letra, number)?'selected':''"
+                             ng-repeat="(number,cell) in row" ng-click="vm.selectCell(letra, number, $event)">
+                            <img ng-if="cell && cell.type" ng-class="vm.getBoardClass()"
+                                 src="assets/common/images/pieces/{{user.profile.piece}}/{{(cell.color ? 'white':'black')}}/{{cell.type}}.png">
+                        </div>
+                        <div class="number" ng-class="vm.getBoardClass()">{{letra+1}}</div>
+                    </div>
+                    <div layout="row" flex style="height:25%;" layout-align="center center">
+                        <div class="letras" ng-class="vm.getBoardClass()">H</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">G</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">F</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">E</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">D</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">C</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">B</div>
+                        <div class="letras" ng-class="vm.getBoardClass()">A</div>
+                    </div>
+                </md-content>
+                <md-content class="layout-padding chess-board" ng-if="!vm.board.length">
+                    <div layout="row" layout-sm="column" layout-align="center center">
+                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                    <div layout="row" layout-sm="column" layout-align="center center">
+                        <div>Cargando tablero...</div>
+                    </div>
+                </md-content>
+            </md-card>
+            <md-card>
+                <md-content>
+                    <div class="clock">{{vm.time.you.string}}</div>
+                </md-content>
+            </md-card>
+        </div>
+        <div>
+            <md-card>
+                <md-content class="layout-padding">
+                    <md-list-item class="md-2-line" ng-repeat="move in vm.moves"
+                                  style="height: 30px;min-height: inherit;">
+                        <img src="assets/common/images/pieces/classic/{{move.color}}/{{move.piece}}.png"
+                             style="height:20px;">
+                        <p>{{ move.move }}</p>
+                    </md-list-item>
+                </md-content>
+            </md-card>
+        </div>
+    </div>
+</div>

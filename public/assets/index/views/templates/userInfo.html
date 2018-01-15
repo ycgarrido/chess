@@ -1,0 +1,15 @@
+<md-toast id="user-info-{{userInfo.user._id}}">
+    <md-card>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <span flex>{{userInfo.user.name}}</span>
+            </div>
+        </md-toolbar>
+        <md-content class="layout-padding">
+            <div layout="row">
+                <span flex><b>ELO</b></span>
+                <span flex>{{userInfo.user.elo}}</span>
+            </div>
+        </md-content>
+    </md-card>
+</md-toast>

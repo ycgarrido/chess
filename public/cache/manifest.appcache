@@ -1,0 +1,39 @@
+CACHE MANIFEST
+# v1.0.15 - 2017-09-05
+# ===================================================================================================
+#                               ENCRIPTAR
+# ===================================================================================================
+/vendors/rsa/jsbn.js
+/vendors/rsa/rsa.js
+# ===================================================================================================
+#                               ANGULAR Y MATERIAL
+# ===================================================================================================
+/vendors/angular-material/angular-material.min.css
+/vendors/angular-material-icons/dist/icons-material.min.css
+/vendors/angular/angular.min.js
+/vendors/angular-sanitize/angular-sanitize.min.js
+/vendors/angular-animate/angular-animate.min.js
+/vendors/angular-aria/angular-aria.min.js
+/vendors/angular-messages/angular-messages.min.js
+/vendors/angular-material/angular-material.min.js
+/vendors/angular-lazyload/ocLazyLoad.min.js
+/vendors/angular-ui-router/release/angular-ui-router.min.js
+# ===================================================================================================
+#                               ICONS
+# ===================================================================================================
+/vendors/angular-material-icons/iconfont/v2.2/MaterialIcons-Regular.woff2
+# ===================================================================================================
+#                               LOGIN
+# ===================================================================================================
+/assets/security/login/app.js
+# ===================================================================================================
+#                               IO
+# ===================================================================================================
+/socket.io/socket.io.js
+# ===================================================================================================
+#                               APP
+# ===================================================================================================
+/assets/common/stylesheet/site.css
+/assets/common/images/site/chess-logo-1.png
+/assets/app.js
+/assets/common/directives/scripts/chat.js

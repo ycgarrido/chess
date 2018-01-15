@@ -1,0 +1,90 @@
+doctype html
+html(lang="es")
+    head
+        title= "Login"
+        meta( name="viewport" content="initial-scale=1")
+        link(rel="stylesheet", href="/vendors/angular-material/angular-material.min.css")
+        link(rel="stylesheet", href="/vendors/angular-material-icons/dist/icons-material.min.css")
+    body(ng-app="chessApp" ng-controller="loginController as vm")
+        div(layout-align="center center" layout="row" style="height:100%;" ng-cloak)
+            div(flex-sm="45" flex-md="45" flex-gt-sm="30" flex class="md-padding")
+                form(action="login" method="post" name="formLogin" ng-if="vm.status === 'login'")
+                    if(error)
+                        md-card
+                            md-content(class="layout-padding")
+                                if(error.username)
+                                    div Usuario incorrecto
+                                if(error.password)
+                                    div Contraseña incorrecta
+                    md-card
+                        md-toolbar(class="md-whiteframe-glow-z1")
+                            div(class="md-toolbar-tools")
+                                i(class="material-icons") vpn_key
+                                span Login
+                                span(flex)
+                                md-button(class="md-icon-button" ng-click="vm.showRegister()")
+                                    md-icon person_add
+                                    md-tooltip Aún no tengo usuario
+                        md-content(class="layout-padding")
+                            div
+                                md-input-container(class="md-block")
+                                    label Usuario
+                                    input(name="username" required value=username ng-model="vm.username")
+                                    div(ng-messages="formLogin.username.$error")
+                                        div(ng-message="required") El usuario es obligatorio
+                                md-input-container(class="md-block")
+                                    label Contraseña
+                                    input(name="password" required type="password" ng-model="vm.password")
+                                    div(ng-messages="formLogin.password.$error" class="errors")
+                                        div(ng-message="required") La contraseña es obligatoria
+                    div(layout-align="end center" layout="row")
+                        md-button(class="md-raised md-primary" type="submit" ng-if="formLogin.$valid") Entrar
+                form(action="/user/register" method="post" name="formRegister" ng-if="vm.status === 'register'")
+                    md-card
+                        md-toolbar(class="md-whiteframe-glow-z1")
+                            div(class="md-toolbar-tools")
+                                i(class="material-icons") person_add
+                                span Crear una cuenta
+                                span(flex)
+                                md-button(class="md-icon-button" ng-click="vm.showLogin()")
+                                    md-icon clear
+                                    md-tooltip Cancelar
+                        md-content(class="layout-padding")
+                            div
+                                md-input-container(class="md-block")
+                                    label Usuario
+                                    input(name="username" required value=username ng-model="vm.register.username" ng-change="vm.verifyUser('username', vm.register.username, 'user-available', 'username')")
+                                    div(ng-messages="formRegister.username.$error")
+                                        div(ng-message="required") El usuario es obligatorio
+                                        div(ng-message="user-available") Este usuario no está disponible
+                                md-input-container(class="md-block")
+                                    label Correo electrónico
+                                    input(name="email" required value=email ng-model="vm.register.email" type="email" ng-change="vm.verifyUser('email', vm.register.email, 'email-available', 'email')")
+                                    div(ng-messages="formRegister.email.$error")
+                                        div(ng-message="required") El correo electrónico es obligatorio
+                                        div(ng-message="email") Introdusca un correo electrónico válido
+                                        div(ng-message="email-available") Este correo electrónico no está disponible
+                                md-input-container(class="md-block")
+                                    label Contraseña
+                                    input(name="password" required ng-model="vm.register.password" type="password")
+                                    div(ng-messages="formRegister.password.$error")
+                                        div(ng-message="required") La contraseña es obligatoria
+                                md-input-container(class="md-block")
+                                    md-checkbox( ng-model="vm.register.terms" name="terms" aria-label="Checkbox 1" required) Acepto los términos de servicio
+                                    div(ng-messages="formRegister.terms.$error")
+                                        div(ng-message="required") Acepte los términos de servicio
+                    div(layout-align="end center" layout="row")
+                        md-button(class="md-raised md-primary" type="submit" ng-if="formRegister.$valid") Aceptar
+
+
+
+        script( type="text/javascript" src="/vendors/rsa/jsbn.js")
+        script( type="text/javascript" src="/vendors/rsa/rsa.js")
+        script(src="/vendors/angular/angular.min.js")
+        script(src="/vendors/angular-sanitize/angular-sanitize.min.js")
+        script(src="/vendors/angular-animate/angular-animate.min.js")
+        script(src="/vendors/angular-aria/angular-aria.min.js")
+        script(src="/vendors/angular-messages/angular-messages.min.js")
+        script(src="/vendors/angular-material/angular-material.min.js")
+
+        script(src="/assets/security/login/app.js")

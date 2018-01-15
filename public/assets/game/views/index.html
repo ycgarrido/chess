@@ -1,0 +1,89 @@
+<div>
+    <div layout-align="center top" layout="row" layout-xs="column" ng-cloak>
+        <div>
+            <md-card>
+                <div layout="column" layout-xs="row" layout-align="center center">
+                    <md-button class="md-fab md-mini" ng-class="user.profile.promove === 'queen'? 'md-warn':'md-raised'"
+                               ng-click="vm.setPromove('queen')" aria-label="Eat cake">
+                        <md-icon
+                                md-svg-src="/assets/common/svg/pieces/{{user.profile.piece}}/{{(vm.white.user._id === user._id)?'white': 'black'}}/queen.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini" ng-class="user.profile.promove === 'tower'? 'md-warn':'md-raised'"
+                               ng-click="vm.setPromove('tower')" aria-label="Eat cake">
+                        <md-icon
+                                md-svg-src="/assets/common/svg/pieces/{{user.profile.piece}}/{{(vm.white.user._id === user._id)?'white': 'black'}}/tower.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini" ng-class="user.profile.promove === 'alfil'? 'md-warn':'md-raised'"
+                               ng-click="vm.setPromove('alfil')" aria-label="Eat cake">
+                        <md-icon
+                                md-svg-src="/assets/common/svg/pieces/{{user.profile.piece}}/{{(vm.white.user._id === user._id)?'white': 'black'}}/alfil.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini" ng-class="user.profile.promove === 'horse'? 'md-warn':'md-raised'"
+                               ng-click="vm.setPromove('horse')" aria-label="Eat cake">
+                        <md-icon
+                                md-svg-src="/assets/common/svg/pieces/{{user.profile.piece}}/{{(vm.white.user._id === user._id)?'white': 'black'}}/horse.svg"></md-icon>
+                    </md-button>
+                </div>
+            </md-card>
+        </div>
+        <div flex>
+            <md-card ng-if="vm.winner && vm.winner._id === vm.white.user._id">
+                <md-content class="layout-padding">
+                    <div class="game-messages">Ganan las blancas.</div>
+                </md-content>
+            </md-card>
+            <md-card ng-if="vm.winner && vm.winner._id === vm.black.user._id">
+                <md-content class="layout-padding">
+                    <div class="game-messages">Ganan las negras.</div>
+                </md-content>
+            </md-card>
+            <md-card ng-if="vm.finished && !vm.winner && !vm.lost">
+                <md-content class="layout-padding">
+                    <div class="game-messages">El juego ha terminado tablas.</div>
+                </md-content>
+            </md-card>
+            <md-card ng-if="vm.postpone">
+                <md-content class="layout-padding">
+                    <div class="game-messages">Partida aplazada por desconexión.</div>
+                </md-content>
+            </md-card>
+            <md-card ng-if="vm.outofgame">
+                <md-content class="layout-padding">
+                    <div class="game-messages">Tu oponente se ha desconectado. Esperando {{vm.outofgame}} segundos.</div>
+                </md-content>
+            </md-card>
+            <md-card>
+                <md-content>
+                    <div class="clock">{{vm.time.other.string}}</div>
+                </md-content>
+            </md-card>
+            <chess-board c-game="vm._id"
+                         c-board="vm.board"
+                         c-moves="vm.moves "
+                         c-white="vm.white"
+                         c-black="vm.black"
+                         c-color="vm.color"
+                         c-turn="vm.turn"
+                         c-postpone="vm.postpone"
+                         c-finished="vm.finished">
+            </chess-board>
+            <md-card>
+                <md-content>
+                    <div class="clock">{{vm.time.you.string}}</div>
+                </md-content>
+            </md-card>
+        </div>
+        <div>
+            <md-card>
+                <md-content class="layout-padding">
+                    <md-list-item class="md-2-line" ng-repeat="move in vm.moves"
+                                  style="height: 30px;min-height: inherit;">
+                        <img src="assets/common/images/pieces/classic/{{move.color}}/{{move.piece}}.png"
+                             style="height:20px;">
+                        <p>{{ move.move }}</p>
+                    </md-list-item>
+                </md-content>
+            </md-card>
+        </div>
+    </div>
+</div>

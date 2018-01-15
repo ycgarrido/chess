@@ -1,0 +1,86 @@
+{
+  "_args": [
+    [
+      "angular@~1.5",
+      "/home/corona/updates"
+    ]
+  ],
+  "_from": "angular@>=1.5.0 <1.6.0",
+  "_id": "angular@1.5.9",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/angular",
+  "_nodeVersion": "4.4.7",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/angular-1.5.9.tgz_1480018633883_0.0567803499288857"
+  },
+  "_npmUser": {
+    "email": "angular-core+npm@google.com",
+    "name": "angularcore"
+  },
+  "_npmVersion": "2.15.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "angular",
+    "raw": "angular@~1.5",
+    "rawSpec": "~1.5",
+    "scope": null,
+    "spec": ">=1.5.0 <1.6.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "http://nexus.prod.uci.cu/repository/npm-all/angular/-/angular-1.5.9.tgz",
+  "_shasum": "b7aeff42dad87881e06be16b6690fe766d868b51",
+  "_shrinkwrap": null,
+  "_spec": "angular@~1.5",
+  "_where": "/home/corona/updates",
+  "author": {
+    "email": "angular-core+npm@google.com",
+    "name": "Angular Core Team"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "dependencies": {},
+  "description": "HTML enhanced for web apps",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "b7aeff42dad87881e06be16b6690fe766d868b51",
+    "tarball": "http://nexus.prod.uci.cu/repository/npm-all/angular/-/angular-1.5.9.tgz"
+  },
+  "gitHead": "b0ef53cc950305cb5cae49e6c69c673e4da8a63b",
+  "homepage": "http://angularjs.org",
+  "keywords": [
+    "angular",
+    "browser",
+    "client-side",
+    "framework"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "name": "angular",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.5.9"
+}
