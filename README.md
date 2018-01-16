@@ -12,7 +12,7 @@ To run the server, execute the following steps:
 
     1. cd chess
     2. npm install
-    3. Create a mongodb database in 127.0.0.1 called chess
+    3. Create a mongodb database in 127.0.0.1 named chess
     4. node app.js
 
 
